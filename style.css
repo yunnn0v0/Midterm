@@ -1,0 +1,504 @@
+/* ======= 整體風格 ======= */
+body {
+  margin: 0;
+  background: url("頁面主背景.jpg") no-repeat center center fixed; 
+  background-size: cover;
+  font-family: "Noto Sans TC", sans-serif;
+  color: #e0e0e0;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ======= 目錄 ======= */
+#menu-toggle { display: none; }
+
+/* 目錄按鈕：初始只顯示 📜 */
+.menu-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 10;
+  border: 1px solid #00bcd4;
+  transition: background 0.3s, width 0.3s, padding 0.3s;
+  width: 20px;      /* 初始寬度只放 📜 */
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* 文字在 span 內，初始隱藏 */
+.menu-btn span {
+  opacity: 0;
+  margin-left: 5px;
+  transition: opacity 0.3s;
+}
+
+/* 滑鼠懸停時，顯示完整文字 */
+.menu-btn:hover {
+  width: 160px;   /* 展開寬度，顯示「📜 劇場版目錄」 */
+  padding: 10px 15px;
+}
+
+.menu-btn:hover span {
+  opacity: 1;
+}
+
+/* 目錄面板 */
+nav {
+  position: fixed;
+  top: 0;
+  left: -240px;
+  width: 220px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  padding-top: 80px;
+  transition: left 0.4s ease;
+  border-right: 2px solid #00bcd4;
+  z-index: 9;
+}
+
+#menu-toggle:checked + .menu-btn + nav { left: 0; }
+
+nav h3 { text-align: center; color: #00bcd4; margin-bottom: 10px; }
+nav ul { list-style: none; padding: 0; margin: 0; }
+nav li { margin: 10px 0; text-align: center; }
+nav a {
+  color: #eee;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+nav a:hover { color: #00bcd4; }
+
+/* 半透明遮罩層：柔化背景 */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(4px);
+  z-index: -1;
+}
+
+/* ======= 頁首 ======= */
+header {
+  text-align: center;
+  background: rgba(10, 10, 10, 0.8);
+  padding: 25px 0;
+  border-bottom: 2px solid #ff3b3b;
+  color: #00bcd4;
+  text-shadow: 0 0 8px rgba(0, 188, 212, 0.6);
+  font-size: 16px; /* 基本字體，可隨h1,h2控制 */
+}
+
+header h1 {
+  font-size: 4vw;      /* 隨螢幕寬度縮放 */
+  margin: 0 0 10px 0;
+}
+
+header h2 {
+  font-size: 2vw;
+  margin: 0 0 5px 0;
+  font-weight: 400;
+}
+
+header p {
+  font-size: 1.5vw;
+  margin: 0;
+  font-style: italic;
+  color: #ccc;
+}
+
+/* ======= 劇場版區塊 ======= */
+.movie-section, .movie {
+  width: 1000px;      /* 固定寬度 */
+  height: 420px;       /* 固定高度 */
+  margin: 50px auto;
+  padding: 30px;
+  background: rgba(20, 20, 20, 0.25);
+  border-left: 6px solid #00bcd4;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 188, 212, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;  /* 背景圖絕對定位 */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 1.2s ease both;
+}
+
+.movie-section:hover, .movie:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(0, 188, 212, 0.4);
+}
+
+/* ===== 背景圖（固定） ===== */
+.movie-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1000px;      /* 與容器固定寬度一致 */
+  height: 420px;       /* 與容器固定高度一致 */
+  background-image: url("movie-bg.jpg"); /* 替換成你的電影背景圖 */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: 0.3;       /* 透明度可調 */
+  z-index: 0;
+}
+
+/* ===== 標題與文字 ===== */
+.movie-section h2, .movie h2 {
+  font-size: 2em;   /* 固定大小 */
+  margin-bottom: 10px;
+  color: #00bcd4;
+}
+
+.song {
+  font-style: italic;
+  color: #ff3b3b;
+  margin-bottom: 15px;
+}
+
+.intro {
+  line-height: 1.8;
+  font-size: 1.05em; /* 固定大小 */
+}
+
+/* ===== 劇照淡入動畫 ===== */
+.movie-img, .movie-section {
+  width: 1000px;     /* 固定寬度 */
+  height: 420px;     /* 固定高度 */
+  border-radius: 10px;
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeIn 1.5s ease forwards;
+}
+
+/* ===== 黑色透明框（文字區） ===== */
+.overlay {
+  position: relative;  /* 在背景上層 */
+  z-index: 1;
+  width: 800px;        /* 固定寬度 */
+  height: 250px;       /* 固定高度 */
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  border-left: 0.5em solid #00bcd4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.overlay h2 {
+  color: #00bcd4;
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.overlay p {
+  line-height: 1.8;
+  font-size: 1.1em;
+}
+
+/* ===== 動畫 ===== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ======= 頁尾 ======= */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: rgba(10, 10, 10, 0.8);
+  border-top: 2px solid #ff3b3b;
+  font-size: 0.9em;
+  color: #aaa;
+}
+
+/* ======= 目錄 ======= */
+#menu-toggle { display: none; }
+
+.menu-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 10;
+  border: 1px solid #00bcd4;
+  transition: background 0.3s;
+}
+
+.menu-btn:hover { background: rgba(0, 188, 212, 0.3); }
+
+nav {
+  position: fixed;
+  top: 0;
+  left: -240px;
+  width: 220px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  padding-top: 80px;
+  transition: left 0.4s ease;
+  border-right: 2px solid #00bcd4;
+  z-index: 9;
+}
+
+#menu-toggle:checked + .menu-btn + nav { left: 0; }
+
+nav h3 { text-align: center; color: #00bcd4; margin-bottom: 10px; }
+nav ul { list-style: none; padding: 0; margin: 0; }
+nav li { margin: 10px 0; text-align: center; }
+nav a {
+  color: #eee;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+nav a:hover { color: #00bcd4; }
+
+/* ======= 響應式設計 ======= */
+@media (max-width: 768px) {
+  header { font-size: 1.4em; padding: 18px 0; }
+  .movie-section, .movie {
+    width: 92%;
+    height: 300px; /* 平板版固定高度 */
+    margin: 30px auto;
+    padding: 20px;
+  }
+  .movie-section h2, .movie h2 { font-size: 1.5em; }
+  .intro { font-size: 0.95em; }
+  .movie-img { margin-bottom: 15px; }
+  footer { font-size: 0.8em; padding: 15px; }
+}
+
+@media (max-width: 480px) {
+  .movie-section, .movie {
+    border-left: 4px solid #00bcd4;
+    border-radius: 10px;
+    margin: 25px auto;
+    padding: 18px;
+    height: 260px; /* 手機版固定高度 */
+  }
+  .intro { font-size: 0.9em; line-height: 1.6; }
+  footer { font-size: 0.75em; }
+}
+
+
+
+/* ======= 個別電影背景設定 ======= */
+
+/* movie1 */
+#movie1 {
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* movie2 */
+#movie2 {
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* movie3 */
+#movie3 {
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* movie4 */
+#movie4 {
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* movie5 */
+#movie5 {
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* movie6 */
+#movie6 {
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* movie7 */
+#movie7 {
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* movie8 */
+#movie8 {
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+/* movie9 */
+#movie9 {
+  background-size: cover;
+  background-position: 50% 30%;
+  background-repeat: no-repeat;
+}
+
+/* movie10 */
+#movie10 {
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+/* movie11 */
+#movie11 {
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* movie12 */
+#movie12 {
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* movie13 */
+#movie13 {
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* movie14 */
+#movie14 {
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* movie15 */
+#movie15 {
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* movie16 */
+#movie16 {
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* movie17 */
+#movie17 {
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* movie18 */
+#movie18 {
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* movie19 */
+#movie19 {
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* movie20 */
+#movie20 {
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* movie21 */
+#movie21 {
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* movie22 */
+#movie22 {
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* movie23 */
+#movie23 {
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* movie24 */
+#movie24 {
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* movie25 */
+#movie25 {
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* movie26 */
+#movie26 {
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* movie27 */
+#movie27 {
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* movie28 */
+#movie28 {
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
