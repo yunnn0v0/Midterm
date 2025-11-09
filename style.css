@@ -1,7 +1,7 @@
 /* ======= 整體風格 ======= */
 body {
   margin: 0;
-  background: url("頁面主背景.jpg") no-repeat center center fixed; 
+  background: url("頁面主背景.webp") no-repeat center center fixed; 
   background-size: cover;
   font-family: "Noto Sans TC", sans-serif;
   color: #e0e0e0;
@@ -374,20 +374,20 @@ nav a:hover { color: #00bcd4; }
 /* movie10 */
 #movie10 {
   background-size: cover;
-  background-position: center top;
+  background-position: center;
   background-repeat: no-repeat;
 }
 /* movie11 */
 #movie11 {
   background-size: cover;
-  background-position: center top;
+  background-position: center;
   background-repeat: no-repeat;
 }
 
 /* movie12 */
 #movie12 {
   background-size: cover;
-  background-position: center top;
+  background-position: center;
   background-repeat: no-repeat;
 }
 
