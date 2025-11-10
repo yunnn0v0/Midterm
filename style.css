@@ -189,6 +189,18 @@ footer {
   .overlay p { font-size: 0.9em; }
 }
 
+/* 劇照淡入動畫 */
+.movie-section {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInUp 1.2s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* ======= 個別電影背景設定 ======= */
 
 /* movie1 */
