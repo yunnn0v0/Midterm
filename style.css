@@ -49,11 +49,11 @@ body, html {
 .menu-btn:hover span {
   opacity: 1;
 }
+
 /* 側邊目錄 */
 .sidebar {
-  width: 220px;
-  min-height: 100vh; /* 讓高度至少跟螢幕一樣 */
-  height: auto;      /* 自動撐開 */
+  width: 220px; /* 改掉固定高度 */
+  min-height: 100vh;
   background: rgba(0,0,0,0.85);
   padding-top: 80px;
   position: fixed;
@@ -62,15 +62,11 @@ body, html {
   transform: translateX(-220px);
   transition: transform 0.4s ease;
   z-index: 1000;
-  overflow: visible; /* 取消內部滾動條 */
+  overflow: visible;
 }
-
-/* 選擇取消滾動時可能還要調整 ul 內邊距 */
 .sidebar ul {
   max-height: none; /* 不限制高度 */
   overflow: visible; 
-}
-
 /* 目錄內容 */
 .sidebar h3 {
   text-align: center;
