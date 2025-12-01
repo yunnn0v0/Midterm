@@ -52,12 +52,6 @@ document.addEventListener("keydown", function (e) {
   }
 });
 
-/* ==目錄可滑動 == */
-sidebar.addEventListener("wheel", function (event) {
-  // 防止 body 捲動
-  event.stopPropagation();
-});
-
 function increaseFont() {
   document.body.style.fontSize =
     parseFloat(getComputedStyle(document.body).fontSize) + 1 + "px";
