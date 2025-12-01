@@ -97,6 +97,10 @@ body, html {
   color: #00bcd4;
 }
 
+.sidebar ul {
+  padding-bottom: 120px; /* 120px 留白，可改 80~200 都可以 */
+}
+
 /* ======= 主內容 ======= */
 .main-content {
   flex: 1;
@@ -396,4 +400,28 @@ footer {
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
+}
+
+.font-control {
+  position: fixed;
+  right: 20px;
+  bottom: 30px;
+  display: flex;
+  gap: 10px;
+  z-index: 999;
+}
+
+.font-control button {
+  background: rgba(0,0,0,0.6);
+  border: 1px solid #fff;
+  color: white;
+  padding: 8px 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.font-control button:hover {
+  background: rgba(255,255,255,0.2);
 }
