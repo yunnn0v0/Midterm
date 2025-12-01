@@ -16,13 +16,12 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 const sidebar = document.querySelector(".sidebar");
 const menuToggle = document.getElementById("menu-toggle");
 
-menuToggle.addEventListener("change", function () {
-  if (this.checked) {
-    sidebar.classList.add("open");
-  } else {
-    sidebar.classList.remove("open");
-  }
-});
+let fontSize = 100; // 百分比
+function applyFontSize() {
+  document.documentElement.style.fontSize = fontSize + "%";
+}
+function increaseFont() { fontSize += 10; applyFontSize(); }
+function decreaseFont() { fontSize = Math.max(50, fontSize - 10); applyFontSize(); }
 
 /* == 字體縮放 == */
 let fontSize = 100; // 預設 100%
