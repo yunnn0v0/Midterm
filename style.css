@@ -57,17 +57,17 @@ body, html {
   border-right: 2px solid #00bcd4;
   padding-top: 80px;
   overflow-y: auto;
-  position: fixed; /* 固定位置，滑動主內容時不動 */
+  position: fixed;
   top: 0;
   left: 0;
   height: 100%;
-  transform: translateX(-240px); /* 初始隱藏 */
+  transform: translateX(-220px); /* 修正為與寬度一致 */
   transition: transform 0.4s ease;
   z-index: 10;
 }
 
-#menu-toggle:checked + .menu-btn + .sidebar {
-  transform: translateX(0); /* 打開目錄 */
+#menu-toggle:checked ~ .sidebar {  
+  transform: translateX(0);
 }
 
 .sidebar h3 {
