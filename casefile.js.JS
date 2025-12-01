@@ -25,38 +25,36 @@ menuToggle.addEventListener("change", function () {
 });
 
 /* == 字體縮放 == */
-let fontSize = 100; // 百分比
+let fontSize = 100; // 預設 100%
 
 function applyFontSize() {
   document.documentElement.style.fontSize = fontSize + "%";
 }
 
+// 增加
 function increaseFont() {
   fontSize += 10;
   applyFontSize();
 }
 
+// 減少
 function decreaseFont() {
-  fontSize = Math.max(50, fontSize - 10);
+  fontSize = Math.max(50, fontSize - 10); // 最小 50%
   applyFontSize();
 }
 
 // 快捷鍵
 document.addEventListener("keydown", function (e) {
-  if (e.ctrlKey && e.key === "+") increaseFont();
-  if (e.ctrlKey && e.key === "-") decreaseFont();
+  if (e.ctrlKey && e.key === "+") {
+    increaseFont();
+  }
+  if (e.ctrlKey && e.key === "-") {
+    decreaseFont();
+  }
 });
 
-/* ===== 劇照淡入動畫 ===== */
-const sections = document.querySelectorAll('.movie-section');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.style.opacity = 1;
-      entry.target.style.transform = 'translateY(0)';
-      entry.target.style.transition = 'opacity 1s, transform 1s';
-      observer.unobserve(entry.target);
-    }
-  });
-},{ threshold: 0.2 });
-sections.forEach(section => observer.observe(section));
+/* ==目錄可滑動 == */
+sidebar.addEventListener("wheel", function (event) {
+  // 防止 body 捲動
+  event.stopPropagation();
+});
