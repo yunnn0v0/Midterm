@@ -95,10 +95,11 @@ body, html {
 
 .sidebar a:hover {
   color: #00bcd4;
+
 }
 
 .sidebar ul {
-  padding-bottom: 200px;
+  padding-bottom: 120px;
 }
 
 /* ======= 主內容 ======= */
@@ -425,3 +426,4 @@ footer {
 .font-control button:hover {
   background: rgba(255,255,255,0.2);
 }
+
